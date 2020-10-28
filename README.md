@@ -60,10 +60,6 @@ interface IFlags {
 
 ---
 
-
-
-
-
 ### PhoneList
 
 #### Component props
