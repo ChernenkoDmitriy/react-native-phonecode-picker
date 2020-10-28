@@ -1,0 +1,27 @@
+{
+  "name": "react-native-phonecode-picker",
+  "version": "1.0.0",
+  "description": "Phone code picker",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "phone",
+    "phonecode",
+    "flag"
+  ],
+  "author": "Dmitriy Chernenko <nmaudnepr@gmail.com>",
+  "source": "index.ts",
+  "license": "ISC",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "homepage": "https://github.com/ChernenkoDmitriy/react-native-phonecode-picker",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChernenkoDmitriy/react-native-phonecode-picker"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
