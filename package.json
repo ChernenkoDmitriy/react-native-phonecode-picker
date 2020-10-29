@@ -1,6 +1,6 @@
 {
   "name": "react-native-phonecode-picker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Phone code picker",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

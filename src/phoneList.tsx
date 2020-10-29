@@ -14,12 +14,14 @@ interface Props {
     textStyle?: object;
     testID?: string;
     placeholder?: string;
+    filtered?: string;
 };
 
-export const PhoneList: FC<Props> = ({ placeholder = '', isWithSearch = false, language = 'en', onPress, containerStyle = {}, itemContainerStyle = {}, textStyle = {}, testID = 'PhoneList' }) => {
+export const PhoneList: FC<Props> = ({ filtered = '', placeholder = '', isWithSearch = false, language = 'en', onPress, containerStyle = {}, itemContainerStyle = {}, textStyle = {}, testID = 'PhoneList' }) => {
     const [flagResource] = useState<IFlags>(new Flags());
     const [countries] = useState<ICountries>(new Countries());
     const [serchString, setSerchString] = useState<string>('');
+    const filter = isWithSearch ? serchString : filtered;
 
     return (
         <View style={[styles.container, containerStyle]} >
@@ -29,7 +31,7 @@ export const PhoneList: FC<Props> = ({ placeholder = '', isWithSearch = false, l
                 keyboardShouldPersistTaps={'handled'}
                 accessibilityLabel={testID}
                 testID={testID}
-                data={countries.getCountries(language, serchString)}
+                data={countries.getCountries(language, filter)}
                 renderItem={({ item }) =>
                     <PhoneItem
                         key={item.key}
