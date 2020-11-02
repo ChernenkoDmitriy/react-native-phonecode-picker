@@ -5,7 +5,8 @@ import { countriesru } from "./countries_ru";
 import { countriesuk } from "./countries_uk";
 
 export interface ICountries {
-    getCountries: (lang: 'ru' | 'es' | 'en' | 'uk' | 'ar', search?: string) => Array<{ countryName: string, phcode: string, key: string }>;
+    getCountries: (lang: 'ru' | 'es' | 'en' | 'uk' | 'ar', search?: string) => Array<{ countryName: string, phcode: string, key: string; mask: string; }>;
+    getCountryByIso: (lang: 'ru' | 'es' | 'en' | 'uk' | 'ar', key: string) => { countryName: string, phcode: string, key: string; mask: string; };
 };
 
 export class Countries implements ICountries {
@@ -17,6 +18,12 @@ export class Countries implements ICountries {
             return Countries.instance;
         }
         Countries.exist = true;
+    };
+
+    getCountryByIso = (lang: 'ru' | 'es' | 'en' | 'uk' | 'ar', key: string) => {
+        const list = { ru: countriesru, uk: countriesuk, ar: countriesar, en: countriesen, es: countrieses, };
+        const countries = list[lang];
+        return countries[key];
     };
 
     getCountries = (lang: 'ru' | 'es' | 'en' | 'uk' | 'ar', search?: string) => {

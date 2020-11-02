@@ -1,9 +1,40 @@
 {
-  "name": "react-native-phonecode-picker",
-  "version": "1.0.1",
+  "_from": "react-native-phonecode-picker@1.0.2",
+  "_id": "react-native-phonecode-picker@1.0.2",
+  "_inBundle": false,
+  "_integrity": "sha512-SQP50Admhn9ktG157J3mkzfgR6Ci84ChOzE8Z5tYoxSBgnWxUwdAAqhdcvVl+Rudds0K5dIuKODb8DI1SMxD0g==",
+  "_location": "/react-native-phonecode-picker",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "react-native-phonecode-picker@1.0.2",
+    "name": "react-native-phonecode-picker",
+    "escapedName": "react-native-phonecode-picker",
+    "rawSpec": "1.0.1",
+    "saveSpec": null,
+    "fetchSpec": "1.0.1"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-native-phonecode-picker/-/react-native-phonecode-picker-1.0.1.tgz",
+  "_shasum": "862bf79a62179097d741033fabd2570054a27922",
+  "_spec": "react-native-phonecode-picker@1.0.2",
+  "_where": "/Users/dmitriy/Desktop/mobappflowersua",
+  "author": {
+    "name": "Dmitriy Chernenko",
+    "email": "nmaudnepr@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/ChernenkoDmitriy/react-native-phonecode-picker/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
   "description": "Phone code picker",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "homepage": "https://github.com/ChernenkoDmitriy/react-native-phonecode-picker",
+  "jest": {
+    "preset": "react-native"
   },
   "keywords": [
     "react-native",
@@ -11,17 +42,17 @@
     "phonecode",
     "flag"
   ],
-  "author": "Dmitriy Chernenko <nmaudnepr@gmail.com>",
-  "source": "index.ts",
   "license": "ISC",
   "main": "index.js",
-  "types": "index.d.ts",
-  "homepage": "https://github.com/ChernenkoDmitriy/react-native-phonecode-picker",
+  "name": "react-native-phonecode-picker",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ChernenkoDmitriy/react-native-phonecode-picker"
+    "url": "git+https://github.com/ChernenkoDmitriy/react-native-phonecode-picker.git"
   },
-  "jest": {
-    "preset": "react-native"
-  }
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "source": "index.ts",
+  "types": "index.d.ts",
+  "version": "1.0.2"
 }

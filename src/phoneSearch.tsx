@@ -26,7 +26,7 @@ export const PhoneSearch: FC<Props> = ({ serchString = '', onChangeText, placeho
                 placeholder={placeholder}
             />
             {serchString ? <Pressable style={({ pressed }) => [styles.svgContainer, { opacity: pressed ? 0.7 : 1 }]} onPress={() => { onChangeText('') }}  >
-                <CloseIcon />
+                <CloseIcon width={32} height={32} color={'#696969'} />
             </Pressable> : null}
         </View>
     );
@@ -37,18 +37,23 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         height: 60,
         width: '100%',
+        paddingHorizontal: 10,
     },
     svgContainer: {
         width: 56,
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+        borderBottomWidth: 1,
+        borderColor: '#000',
     },
     textInput: {
         flex: 1,
-        fontSize: 14,
+        fontSize: 18,
         color: '#000',
         padding: 0,
-        marginRight: 10,
+        paddingRight: 10,
+        borderBottomWidth: 1,
+        borderColor: '#000',
     },
 });

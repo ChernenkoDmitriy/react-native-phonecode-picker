@@ -2,17 +2,17 @@ import React, { FC } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
 
 interface Props {
-	country: { countryName: string; phcode: string; key: string; };
+	country: { countryName: string; phcode: string; key: string; mask: string; };
 	flag: any;
 	testID: string;
-	onPress: (country: { countryName: string; phcode: string; key: string; }) => void;
+	onPress: (country: { countryName: string; phcode: string; key: string; mask: string; }) => void;
 	itemContainerStyle?: object;
 	textStyle?: object;
 };
 
-export const PhoneItem: FC<Props> = ({ country: { countryName, phcode, key }, flag, testID, onPress, itemContainerStyle, textStyle }) => {
+export const PhoneItem: FC<Props> = ({ country: { countryName, phcode, key, mask }, flag, testID, onPress, itemContainerStyle, textStyle }) => {
 	return (
-		<TouchableOpacity onPress={() => { onPress({ countryName, phcode, key }) }} accessibilityLabel={testID} testID={testID}>
+		<TouchableOpacity onPress={() => { onPress({ countryName, phcode, key, mask }) }} accessibilityLabel={testID} testID={testID}>
 			<View style={[styles.countryContainer, itemContainerStyle]}>
 				<View style={styles.flagAndName}>
 					<View style={styles.imagewrapper}>
@@ -28,15 +28,13 @@ export const PhoneItem: FC<Props> = ({ country: { countryName, phcode, key }, fl
 	);
 };
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
 	countryContainer: {
 		flexDirection: 'row',
 		width: '100%',
 		justifyContent: 'space-between',
 		height: 50,
 		alignItems: 'center',
-		borderBottomWidth: 0.5,
-		borderColor: '#5A6772',
 	},
 	flagAndName: {
 		flexDirection: 'row',
