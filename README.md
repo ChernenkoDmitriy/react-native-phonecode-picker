@@ -26,7 +26,8 @@ getCountries - returns countries array filtered by search.
 
 ```ts
 interface ICountries {
-    getCountries: (lang: 'ru' | 'es' | 'en' | 'uk' | 'ar', search?: string) => Array<{ countryName: string, phcode: string, key: string }>;
+    getCountries: (lang: 'ru' | 'es' | 'en' | 'uk' | 'ar', search?: string) => Array<{ countryName: string, phcode: string, key: string; mask: string; }>;
+    getCountryByIso: (lang: 'ru' | 'es' | 'en' | 'uk' | 'ar', key: string) => { countryName: string, phcode: string, key: string; mask: string; };
 };
 ```
 
@@ -67,8 +68,8 @@ interface IFlags {
 ```ts
 interface Props {
         language: 'ru' | 'es' | 'en' | 'uk' | 'ar';
-        isWithSearch?: boolean;
-        onPress: (country: { countryName: string; phcode: string; key: string; }) => void;
+        isSearch?: boolean;
+        onPress: (country: { countryName: string; phcode: string; key: string; mask: string; }) => void;
         containerStyle?: object;
         itemContainerStyle?: object;
         textStyle?: object;
@@ -90,6 +91,30 @@ interface Props {
         onPress: (country: { countryName: string; phcode: string; key: string; }) => void;
         itemContainerStyle?: object;
         textStyle?: object;
+    };
+```
+---
+
+### PhoneInput
+
+#### Component props
+
+```ts
+interface Props {
+    country: { countryName: string; phcode: string; key: string; mask: string; };
+        value: string;
+        onPress: () => void;
+        onChangeText: (text: string) => void;
+        style?: {
+            container?: object,
+            textInput?: object,
+            placeholderTextColor?: string,
+        };
+        autoFocus?: boolean;
+        testID?: string;
+        placeholder?: string;
+        onFocus?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void | undefined;
+        onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void | undefined;
     };
 ```
 ---
