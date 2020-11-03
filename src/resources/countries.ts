@@ -29,7 +29,10 @@ export class Countries implements ICountries {
     getCountries = (lang: 'ru' | 'es' | 'en' | 'uk' | 'ar', search?: string) => {
         const list = { ru: countriesru, uk: countriesuk, ar: countriesar, en: countriesen, es: countrieses, };
         const countries = list[lang];
-        if (search && countries) {
+        if (search && !isNaN(Number(search))) {
+            const searchLowerCase = search.toLowerCase();
+            return Object.values(countries).filter(item => item.phcode.toLowerCase().includes(searchLowerCase));
+        } else if (search && countries) {
             const searchLowerCase = search.toLowerCase();
             return Object.values(countries).filter(item => item.countryName.toLowerCase().includes(searchLowerCase));
         }
