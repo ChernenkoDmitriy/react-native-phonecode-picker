@@ -2,7 +2,7 @@
 
 React Native components for picking phone number code. Supports 5 languages (Ukrainian, Russian, English, Spanish, English)
 
-![React-native-phonecode-picker iOS](https://github.com/ChernenkoDmitriy/react-native-phonecode-picker/assets/phonePicker.gif)
+![React-native-phonecode-picker iOS](https://github.com/ChernenkoDmitriy/react-native-phonecode-picker/blob/main/assets/phonePicker.gif)
 
 
 ## Install
