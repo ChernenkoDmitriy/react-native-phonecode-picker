@@ -2,11 +2,51 @@
 
 React Native components for picking phone number code. Supports 5 languages (Ukrainian, Russian, English, Spanish, English)
 
+![React-native-phonecode-picker iOS](https://github.com/ChernenkoDmitriy/react-native-phonecode-picker/assets/phonePicker.gif)
+
+
 ## Install
 
 ```
 npm react-native-phonecode-picker --save
 ```
+---
+
+## Minimum examples
+
+```ts
+import React, { useEffect, useState } from 'react';
+import { View, Modal, SafeAreaView } from 'react-native';
+import { PhoneInput, Countries, PhoneList } from 'react-native-phonecode-picker';
+
+export const PhonePicker = () => {
+    const [phone, setPhone] = useState('');
+    const [country, setCountry] = useState({ countryName: '', phcode: '', key: '', mask: '', });
+    const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+        const country = Countries.getCountryByIso('en', 'UA');
+        setCountry(country);
+    }, []);
+
+    const onChooseCountry = (country: { countryName: string; phcode: string; key: string; mask: string; }) => {
+        setCountry(country);
+        setVisible(false);
+    };
+
+    return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 30 }}>
+            <PhoneInput country={country} value={phone} onChangeText={setPhone} onPress={() => { setVisible(true) }} />
+            <Modal visible={visible} animationType='slide'>
+                <SafeAreaView style={{ flex: 1 }}>
+                    <PhoneList language={'en'} onPress={onChooseCountry} isSearch={true} />
+                </SafeAreaView>
+            </Modal>
+        </View>
+    )
+};
+```
+---
 
 ## Examples
 
