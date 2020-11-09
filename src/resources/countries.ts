@@ -21,22 +21,35 @@ export class Countries implements ICountries {
     };
 
     getCountryByIso = (lang: 'ru' | 'es' | 'en' | 'uk' | 'ar', key: string) => {
-        const list = { ru: countriesru, uk: countriesuk, ar: countriesar, en: countriesen, es: countrieses, };
-        const countries = list[lang];
-        return countries[key];
+        try {
+            const list = { ru: countriesru, uk: countriesuk, ar: countriesar, en: countriesen, es: countrieses, };
+            const countries = list[lang];
+            if(countries){
+                return countries[key];
+            }
+            return {};
+        } catch (error) {
+            console.warn('Countries -> getCountryByIso: ', error);
+            return {};
+        }
     };
 
     getCountries = (lang: 'ru' | 'es' | 'en' | 'uk' | 'ar', search?: string) => {
-        const list = { ru: countriesru, uk: countriesuk, ar: countriesar, en: countriesen, es: countrieses, };
-        const countries = list[lang];
-        if (search && !isNaN(Number(search))) {
-            const searchLowerCase = search.toLowerCase();
-            return Object.values(countries).filter(item => item.phcode.toLowerCase().includes(searchLowerCase));
-        } else if (search && countries) {
-            const searchLowerCase = search.toLowerCase();
-            return Object.values(countries).filter(item => item.countryName.toLowerCase().includes(searchLowerCase));
+        try {
+            const list = { ru: countriesru, uk: countriesuk, ar: countriesar, en: countriesen, es: countrieses, };
+            const countries = list[lang];
+            if (search && !isNaN(Number(search))) {
+                const searchLowerCase = search.toLowerCase();
+                return Object.values(countries).filter(item => item.phcode.toLowerCase().includes(searchLowerCase));
+            } else if (search && countries) {
+                const searchLowerCase = search.toLowerCase();
+                return Object.values(countries).filter(item => item.countryName.toLowerCase().includes(searchLowerCase));
+            }
+            return Object.values(countries)
+        } catch (error) {
+            console.warn('Countries -> getCountries: ', error);
+            return [] as Array<{ countryName: string, phcode: string, key: string; mask: string; }>;
         }
-        return Object.values(countries)
     };
 
 };
