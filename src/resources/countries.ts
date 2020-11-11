@@ -24,10 +24,11 @@ export class Countries implements ICountries {
         try {
             const list = { ru: countriesru, uk: countriesuk, ar: countriesar, en: countriesen, es: countrieses, };
             const countries = list[lang];
-            if(countries){
+            if (countries) {
                 return countries[key];
+            } else {
+                return countriesen[key] || {};
             }
-            return {};
         } catch (error) {
             console.warn('Countries -> getCountryByIso: ', error);
             return {};
@@ -38,14 +39,18 @@ export class Countries implements ICountries {
         try {
             const list = { ru: countriesru, uk: countriesuk, ar: countriesar, en: countriesen, es: countrieses, };
             const countries = list[lang];
-            if (search && !isNaN(Number(search))) {
-                const searchLowerCase = search.toLowerCase();
-                return Object.values(countries).filter(item => item.phcode.toLowerCase().includes(searchLowerCase));
-            } else if (search && countries) {
-                const searchLowerCase = search.toLowerCase();
-                return Object.values(countries).filter(item => item.countryName.toLowerCase().includes(searchLowerCase));
+            if (countries) {
+                if (search && !isNaN(Number(search))) {
+                    const searchLowerCase = search.toLowerCase();
+                    return Object.values(countries).filter(item => item.phcode.toLowerCase().includes(searchLowerCase));
+                } else if (search && countries) {
+                    const searchLowerCase = search.toLowerCase();
+                    return Object.values(countries).filter(item => item.countryName.toLowerCase().includes(searchLowerCase));
+                }
+                return Object.values(countries);
+            } else {
+                return Object.values(countriesen);
             }
-            return Object.values(countries)
         } catch (error) {
             console.warn('Countries -> getCountries: ', error);
             return [] as Array<{ countryName: string, phcode: string, key: string; mask: string; }>;
