@@ -6,7 +6,7 @@ import { countriesuk } from "./countries_uk";
 
 export interface ICountries {
     getCountries: (lang: 'ru' | 'es' | 'en' | 'uk' | 'ar', search?: string) => Array<{ countryName: string, phcode: string, key: string; mask: string; }>;
-    getCountryByIso: (lang: 'ru' | 'es' | 'en' | 'uk' | 'ar', key: string) => { countryName: string, phcode: string, key: string; mask: string; };
+    getCountryByIso: (lang: 'ru' | 'es' | 'en' | 'uk' | 'ar', key: string) => Array<{ countryName: string, phcode: string, key: string; mask: string; }>;
 };
 
 export class Countries implements ICountries {
