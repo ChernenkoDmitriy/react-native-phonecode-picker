@@ -46,7 +46,7 @@ export class Countries implements ICountries {
             let result: Country[] = [];
             if (countries) {
                 if (search && !isNaN(Number(search))) {
-                    const searchPhone = search.toLowerCase();
+                    const searchPhone = search?.toLowerCase();
                     Object.keys(phoneCodes).forEach(key => {
                         // @ts-ignore
                         if (phoneCodes[key] && phoneCodes[key].phcode.toLowerCase().includes(searchPhone)) {
@@ -55,13 +55,18 @@ export class Countries implements ICountries {
                         }
                     })
                 } else if (search && countries) {
-                    const searchCountry = search.toLowerCase();
+                    const searchCountry = search?.toLowerCase();
                     Object.keys(phoneCodes).forEach(key => {
                         // @ts-ignore
                         if (phoneCodes[key] && phoneCodes[key].countryName.toLowerCase().includes(searchCountry)) {
                             // @ts-ignore
                             result.push({ countryName: countries[key], ...phoneCodes[key] });
                         }
+                    })
+                } else {
+                    Object.keys(phoneCodes).forEach(key => {
+                        // @ts-ignore
+                        result.push({ countryName: countries[key], ...phoneCodes[key] });
                     })
                 }
             } else {

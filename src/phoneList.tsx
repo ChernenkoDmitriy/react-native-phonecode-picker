@@ -4,11 +4,11 @@ import { PhoneItem } from './phoneItem';
 import { PhoneSearch } from './phoneSearch';
 import { Countries } from './api/countries/Countries';
 import { IFlags } from './api/flags/IFlags';
-import { Country, ICountries } from './api/countries/ICountries';
+import { Country, ICountries, Language } from './api/countries/ICountries';
 import { Flags } from './api/flags/Flags';
 
 interface Props {
-    language: 'ru' | 'es' | 'en' | 'uk' | 'ar';
+    language: Language;
     isSearch?: boolean;
     onPress: (country: Country) => void;
     containerStyle?: object;
