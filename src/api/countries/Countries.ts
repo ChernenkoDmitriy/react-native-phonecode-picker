@@ -58,7 +58,7 @@ export class Countries implements ICountries {
                     const searchCountry = search?.toLowerCase();
                     Object.keys(phoneCodes).forEach(key => {
                         // @ts-ignore
-                        if (phoneCodes[key] && phoneCodes[key].countryName.toLowerCase().includes(searchCountry)) {
+                        if (countries[key] && countries[key].toLowerCase().includes(searchCountry)) {
                             // @ts-ignore
                             result.push({ countryName: countries[key], ...phoneCodes[key] });
                         }
