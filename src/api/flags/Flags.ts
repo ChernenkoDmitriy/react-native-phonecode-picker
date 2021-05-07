@@ -1,11 +1,8 @@
-export interface IFlags {
-	getFlag: (key: string) => any;
-	getAllFlags: () => object;
-};
+import { IFlags } from "./IFlags";
 
 export class Flags implements IFlags {
-	private static exist: boolean;
 	private static instance: Flags;
+
 	private readonly flags = {
 		IO: require('./png_flags/IO.png'),
 		BV: require('./png_flags/BV.png'),
@@ -260,16 +257,17 @@ export class Flags implements IFlags {
 	};
 
 	constructor() {
-		if (Flags.exist) {
+		if (Flags.instance) {
 			return Flags.instance;
 		}
-		Flags.exist = true;
-	};
+		Flags.instance = this;
+	}
 
 	getFlag = (key: string) => {
-		return this.flags[key.toUpperCase()];
-	};
+		return this.flags[key?.toUpperCase()];
+	}
+
 	getAllFlags = () => {
 		return this.flags;
-	};
-};
+	}
+}

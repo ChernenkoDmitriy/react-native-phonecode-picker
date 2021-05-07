@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
+import { Country } from './api/countries/ICountries';
 
 interface Props {
-	country: { countryName: string; phcode: string; key: string; mask: string; };
+	country: Country;
 	flag: any;
 	testID: string;
 	onPress: (country: { countryName: string; phcode: string; key: string; mask: string; }) => void;
