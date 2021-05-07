@@ -1,6 +1,6 @@
 # react-native-phonecode-picker
 
-React Native components for picking phone number code. Supports 5 languages (Ukrainian, Russian, English, Spanish, English)
+React Native components for picking phone number code. Supports 5 languages (Arab, German, French, Italian, Polish, Ukrainian, Russian, English, Spanish, Turkish)
 
 ![React-native-phonecode-picker iOS](https://github.com/ChernenkoDmitriy/react-native-phonecode-picker/blob/main/assets/phonePicker.gif)
 
@@ -58,6 +58,8 @@ import { PhoneList } from 'react-native-phonecode-picker';
 
 ## API
 
+Language = 'ru' | 'es' | 'en' | 'ua' | 'ar' | 'de' | 'el' | 'fr' | 'it' | 'pl' | 'tr'
+
 ### Countries
 
 getCountries - returns countries array filtered by search.
@@ -66,8 +68,8 @@ getCountries - returns countries array filtered by search.
 
 ```ts
 interface ICountries {
-    getCountries: (lang: 'ru' | 'es' | 'en' | 'uk' | 'ar', search?: string) => Array<{ countryName: string, phcode: string, key: string; mask: string; }>;
-    getCountryByIso: (lang: 'ru' | 'es' | 'en' | 'uk' | 'ar', key: string) => { countryName: string, phcode: string, key: string; mask: string; };
+    getCountries: (lang: Language, search?: string) => Array<{ countryName: string, phcode: string, key: string; mask: string; }>;
+    getCountryByIso: (lang: Language, key: string) => { countryName: string, phcode: string, key: string; mask: string; };
 };
 ```
 
@@ -107,7 +109,7 @@ interface IFlags {
 
 ```ts
 interface Props {
-        language: 'ru' | 'es' | 'en' | 'uk' | 'ar';
+        language: Language;
         isSearch?: boolean;
         onPress: (country: { countryName: string; phcode: string; key: string; mask: string; }) => void;
         containerStyle?: object;
