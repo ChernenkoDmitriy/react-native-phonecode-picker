@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from 'react';
-import { Text, View, StyleSheet, NativeSyntheticEvent, TextInputFocusEventData, Image, ViewStyle, TextStyle, ColorValue, ImageStyle, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, ViewStyle, TextStyle, ColorValue, ImageStyle, TouchableOpacity } from 'react-native';
 import { FlagsApi } from './api/flags/Flags';
-import TextInputMask from 'react-native-text-input-mask';
+import TextInputMask, { TextInputMaskProps } from 'react-native-text-input-mask';
 
 interface Props {
     country: { countryName: string; phcode: string; key: string; mask: string };
@@ -16,26 +16,19 @@ interface Props {
         phoneCodeContainer?: ViewStyle,
         placeholderTextColor?: ColorValue,
     };
-    autoFocus?: boolean;
-    testID?: string;
-    onFocus?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void | undefined;
-    onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void | undefined;
+    inputProps: TextInputMaskProps;
     showFlag?: boolean;
-    inputMask?: string;
 };
 
 export const PhoneInput: FC<Props> = (props) => {
-    const { country,
+    const {
+        country,
         value,
         onChangeText,
         style,
-        testID,
-        inputMask,
+        inputProps = {},
         showFlag = true,
-        autoFocus = false,
-        onBlur = () => { },
-        onFocus = () => { },
-        onPress = () => { }
+        onPress
     } = props;
 
     const placeholder = country.mask?.replace(/[\[\]]/g, '') || '';
@@ -46,25 +39,21 @@ export const PhoneInput: FC<Props> = (props) => {
 
     return (
         <View style={[styles.container, style?.container]}>
-            <TouchableOpacity style={[styles.phoneCodeContainer, style?.phoneCodeContainer]} onPress={onPress}>
+            <TouchableOpacity style={[styles.phoneCodeContainer, style?.phoneCodeContainer]} onPress={onPress} disabled={!onPress}>
                 {!!showFlag && <Image source={flagImage} resizeMode='cover' style={[styles.flag, style?.flag]} />}
-                <Image source={require('./resources/Vector.png')} resizeMode="stretch" style={styles.arrow} />
+                {!!showFlag && <Image source={require('./resources/Vector.png')} resizeMode="stretch" style={styles.arrow} />}
                 <Text style={[styles.text, style?.textCode]}>+{country?.phcode}</Text>
             </TouchableOpacity>
             <TextInputMask
-                mask={typeof inputMask === 'string' ? inputMask : country.mask}
-                autoFocus={autoFocus}
+                mask={country.mask}
                 keyboardType={'phone-pad'}
-                testID={testID}
-                accessibilityLabel={testID}
-                placeholderTextColor={style?.placeholderTextColor || '#DCE1E2'}
                 style={[styles.textImput, style?.textInput]}
                 value={value}
+                placeholderTextColor={style?.placeholderTextColor || '#DCE1E2'}
                 onChangeText={onChangeText}
                 placeholder={placeholder}
-                onFocus={onFocus}
-                onBlur={onBlur}
                 numberOfLines={1}
+                {...{ inputProps }}
             />
         </View>
     );

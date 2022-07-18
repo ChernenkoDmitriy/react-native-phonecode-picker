@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, memo, useState } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { PhoneItem } from './phoneItem';
 import { PhoneSearch } from './phoneSearch';
@@ -18,7 +18,7 @@ interface Props {
     filtered?: string;
 };
 
-export const PhoneList: FC<Props> = ({ filtered = '', placeholder = '', isSearch = false, language = 'en', onPress, containerStyle = {}, itemContainerStyle = {}, textStyle = {}, testID = 'PhoneList' }) => {
+export const PhoneList: FC<Props> = memo(({ filtered = '', placeholder = '', isSearch = false, language = 'en', onPress, containerStyle = {}, itemContainerStyle = {}, textStyle = {}, testID = 'PhoneList' }) => {
     const [serchString, setSerchString] = useState<string>('');
     const filter = isSearch ? serchString : filtered;
 
@@ -46,7 +46,7 @@ export const PhoneList: FC<Props> = ({ filtered = '', placeholder = '', isSearch
             />
         </View>
     )
-};
+});
 
 const styles = StyleSheet.create({
     container: {

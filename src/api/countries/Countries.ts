@@ -10,19 +10,10 @@ import ru from "../../resources/countryNames/ru.json";
 import tr from "../../resources/countryNames/tr.json";
 import ua from "../../resources/countryNames/ua.json";
 import phoneCodes from "../../resources/phoneCodes.json";
-
 import { Country, ICountries, Language } from "./ICountries";
 
 class Countries implements ICountries {
-    private static instance: Countries;
     private countryNames = { ru, es, en, ua, ar, de, el, fr, it, pl, tr };
-
-    constructor() {
-        if (Countries.instance) {
-            return Countries.instance;
-        }
-        Countries.instance = this;
-    }
 
     getCountryByPhoneCode = (lang: Language = 'en', key: string) => {
         try {
@@ -30,12 +21,12 @@ class Countries implements ICountries {
             const country = Object.values(phoneCodes).find(item => item.phcode === String(key));
             if (country) {
                 //@ts-ignore
-                return { ...country, countryName: countries[key] }
+                return { ...country, countryName: countries[key] };
             }
-            return {};
+            return undefined;
         } catch (error) {
             console.warn('Countries -> getCountryByIso: ', error);
-            return {};
+            return undefined;
         }
     }
 

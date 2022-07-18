@@ -74,15 +74,16 @@ getCountries - returns countries array filtered by search.
 
 ```ts
 interface ICountries {
-    getCountries: (lang: Language, search?: string) => Array<{ countryName: string, phcode: string, key: string; mask: string; }>;
-    getCountryByIso: (lang: Language, key: string) => { countryName: string, phcode: string, key: string; mask: string; };
+    getCountries: (lang: Language, search?: string) => Array<Country>;
+    getCountryByIso: (lang: Language, key: string) => Array<Country>;
+    getCountryByPhoneCode: (lang: Language, key: string) => Country | undefined;
 };
 ```
 
 #### Usage example
 
 ```js
-console.log(Countries.getCountries('en'));
+console.log(CountriesApi.getCountries('en'));
 ```
 
 ---
@@ -104,7 +105,7 @@ interface IFlags {
 #### Usage example
 
 ```js
-<Image source={Flags.getFlag('US')} resizeMode="stretch" style={{ width: 30, height: 30 }} />
+<Image source={FlagsApi.getFlag('US')} resizeMode="stretch" style={{ width: 30, height: 30 }} />
 ```
 
 ---
@@ -121,7 +122,6 @@ interface Props {
         containerStyle?: object;
         itemContainerStyle?: object;
         textStyle?: object;
-        testID?: string;
         placeholder?: string;
     };
 ```
@@ -149,20 +149,20 @@ interface Props {
 
 ```ts
 interface Props {
-    country: { countryName: string; phcode: string; key: string; mask: string; };
-        value: string;
+        country: { countryName: string; phcode: string; key: string; mask: string };
         onPress: () => void;
-        onChangeText: (text: string) => void;
+        value: string;
+        onChangeText: (formatted: string, extracted: string | undefined) => void;
         style?: {
-            container?: object,
-            textInput?: object,
-            placeholderTextColor?: string,
+            container?: ViewStyle,
+            flag?: ImageStyle;
+            textInput?: TextStyle,
+            textCode?: TextStyle,
+            phoneCodeContainer?: ViewStyle,
+            placeholderTextColor?: ColorValue,
         };
-        autoFocus?: boolean;
-        testID?: string;
-        placeholder?: string;
-        onFocus?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void | undefined;
-        onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void | undefined;
+        inputProps: TextInputMaskProps;
+        showFlag?: boolean;
     };
 ```
 ---
@@ -173,7 +173,7 @@ interface Props {
 
 ```ts
 interface Props {
-        serchString: string;
+        searchString: string;
         onChangeText: (text: string) => void;
         placeholder?: string;
     };

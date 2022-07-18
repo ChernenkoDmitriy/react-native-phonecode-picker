@@ -5,7 +5,7 @@ import React, { FC } from 'react';
 declare module 'react-native-phonecode-picker' {
 
     export class PhoneSearch extends React.Component<{
-        serchString: string;
+        searchString: string;
         onChangeText: (text: string) => void;
         placeholder?: string;
     }> { };
@@ -34,9 +34,9 @@ declare module 'react-native-phonecode-picker' {
     }> { };
 
     interface IPhoneInput {
-        country: { countryName: string; phcode: string; key: string; mask: string; };
-        value: string;
+        country: { countryName: string; phcode: string; key: string; mask: string };
         onPress: () => void;
+        value: string;
         onChangeText: (formatted: string, extracted: string | undefined) => void;
         style?: {
             container?: ViewStyle,
@@ -46,12 +46,8 @@ declare module 'react-native-phonecode-picker' {
             phoneCodeContainer?: ViewStyle,
             placeholderTextColor?: ColorValue,
         };
-        inputMask?: string;
-        autoFocus?: boolean;
-        testID?: string;
-        placeholder?: string;
-        onFocus?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void | undefined;
-        onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void | undefined;
+        inputProps: TextInputMaskProps;
+        showFlag?: boolean;
     }
 
     export const PhoneInput: FC<IPhoneInput> = (props: IPhoneInput) => { };
