@@ -13,7 +13,7 @@ import phoneCodes from "../../resources/phoneCodes.json";
 
 import { Country, ICountries, Language } from "./ICountries";
 
-export class Countries implements ICountries {
+class Countries implements ICountries {
     private static instance: Countries;
     private countryNames = { ru, es, en, ua, ar, de, el, fr, it, pl, tr };
 
@@ -22,6 +22,21 @@ export class Countries implements ICountries {
             return Countries.instance;
         }
         Countries.instance = this;
+    }
+
+    getCountryByPhoneCode = (lang: Language = 'en', key: string) => {
+        try {
+            const countries = this.countryNames[lang];
+            const country = Object.values(phoneCodes).find(item => item.phcode === String(key));
+            if (country) {
+                //@ts-ignore
+                return { ...country, countryName: countries[key] }
+            }
+            return {};
+        } catch (error) {
+            console.warn('Countries -> getCountryByIso: ', error);
+            return {};
+        }
     }
 
     getCountryByIso = (lang: Language = 'en', key: string) => {
@@ -83,3 +98,5 @@ export class Countries implements ICountries {
     }
 
 }
+
+export const CountriesApi = new Countries();

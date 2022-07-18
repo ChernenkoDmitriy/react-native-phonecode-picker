@@ -12,6 +12,12 @@ npm react-native-phonecode-picker --save
 ```
 ---
 
+require 
+
+```
+react-native-text-input-mask
+```
+
 ## Minimum examples
 
 ```ts

@@ -1,6 +1,6 @@
 import { IFlags } from "./IFlags";
 
-export class Flags implements IFlags {
+class Flags implements IFlags {
 	private static instance: Flags;
 
 	private readonly flags = {
@@ -264,10 +264,14 @@ export class Flags implements IFlags {
 	}
 
 	getFlag = (key: string) => {
+		// @ts-ignore
 		return this.flags[key?.toUpperCase()];
 	}
 
 	getAllFlags = () => {
 		return this.flags;
 	}
+
 }
+
+export const FlagsApi = new Flags();

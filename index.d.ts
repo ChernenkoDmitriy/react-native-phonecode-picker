@@ -19,6 +19,7 @@ declare module 'react-native-phonecode-picker' {
         textStyle?: object;
         testID?: string;
         placeholder?: string;
+        filtered?: string;
     }
 
     export class PhoneList extends React.Component<PhoneListProps> { }
@@ -36,12 +37,16 @@ declare module 'react-native-phonecode-picker' {
         country: { countryName: string; phcode: string; key: string; mask: string; };
         value: string;
         onPress: () => void;
-        onChangeText: (text: string) => void;
+        onChangeText: (formatted: string, extracted: string | undefined) => void;
         style?: {
-            container?: object,
-            textInput?: object,
-            placeholderTextColor?: string,
+            container?: ViewStyle,
+            flag?: ImageStyle;
+            textInput?: TextStyle,
+            textCode?: TextStyle,
+            phoneCodeContainer?: ViewStyle,
+            placeholderTextColor?: ColorValue,
         };
+        inputMask?: string;
         autoFocus?: boolean;
         testID?: string;
         placeholder?: string;
@@ -51,7 +56,7 @@ declare module 'react-native-phonecode-picker' {
 
     export const PhoneInput: FC<IPhoneInput> = (props: IPhoneInput) => { };
 
-    export const Flags: IFlags;
+    export const FlagsApi: IFlags;
 
-    export const Countries: ICountries;
+    export const CountriesApi: ICountries;
 };

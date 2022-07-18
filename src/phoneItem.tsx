@@ -18,12 +18,12 @@ export const PhoneItem: FC<Props> = ({ country: { countryName, phcode, key, mask
 				<View style={styles.flagAndName}>
 					<View style={styles.imagewrapper}>
 						{flag
-							? <Image source={flag} resizeMode="stretch" style={{ width: 30, height: 30 }} />
-							: <Image source={require('./resources/png_flags/_unknown.png')} resizeMode="stretch" style={{ width: 30, height: 30 }} />}
+							? <Image source={flag} resizeMode='stretch' style={styles.flag} />
+							: <Image source={require('./resources/png_flags/_unknown.png')} resizeMode="stretch" style={styles.flag} />}
 					</View>
+					<Text style={[styles.text, textStyle]} >+{phcode}</Text>
 					<Text style={[styles.text, textStyle, { flex: 1 }]} numberOfLines={1}>{countryName}</Text>
 				</View>
-				<Text style={[styles.text, textStyle]} >+{phcode}</Text>
 			</View>
 		</TouchableOpacity >
 	);
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		width: '100%',
 		justifyContent: 'space-between',
-		height: 50,
+		height: 60,
 		alignItems: 'center',
 	},
 	flagAndName: {
@@ -45,21 +45,23 @@ const styles = StyleSheet.create({
 		marginLeft: 5,
 	},
 	text: {
-		fontSize: 14,
-		lineHeight: 18,
+		fontSize: 16,
+		lineHeight: 20,
 		color: '#000',
-		marginRight: 15,
-		marginLeft: 5,
+		marginLeft: 18,
 	},
 	imagewrapper: {
-		height: 30,
-		width: 30,
+		overflow: 'hidden',
+		borderRadius: 4,
+		height: 20,
+		width: 34,
 		marginRight: 5,
 		marginLeft: 10,
-		shadowOpacity: 0.25,
-		shadowRadius: 3,
-		elevation: 2,
-		shadowColor: '#000',
-		shadowOffset: { height: 0, width: 0 },
 	},
+	flag: {
+		left: -1,
+		top: -6,
+		width: 36,
+		height: 32,
+	}
 });

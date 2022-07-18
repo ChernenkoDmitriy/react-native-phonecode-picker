@@ -2,10 +2,9 @@ import React, { FC, useState } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { PhoneItem } from './phoneItem';
 import { PhoneSearch } from './phoneSearch';
-import { Countries } from './api/countries/Countries';
-import { IFlags } from './api/flags/IFlags';
-import { Country, ICountries, Language } from './api/countries/ICountries';
-import { Flags } from './api/flags/Flags';
+import { CountriesApi } from './api/countries/Countries';
+import { Country, Language } from './api/countries/ICountries';
+import { FlagsApi } from './api/flags/Flags';
 
 interface Props {
     language: Language;
@@ -20,8 +19,6 @@ interface Props {
 };
 
 export const PhoneList: FC<Props> = ({ filtered = '', placeholder = '', isSearch = false, language = 'en', onPress, containerStyle = {}, itemContainerStyle = {}, textStyle = {}, testID = 'PhoneList' }) => {
-    const [flagResource] = useState<IFlags>(new Flags());
-    const [countries] = useState<ICountries>(new Countries());
     const [serchString, setSerchString] = useState<string>('');
     const filter = isSearch ? serchString : filtered;
 
@@ -33,12 +30,12 @@ export const PhoneList: FC<Props> = ({ filtered = '', placeholder = '', isSearch
                 keyboardShouldPersistTaps={'handled'}
                 accessibilityLabel={testID}
                 testID={testID}
-                data={countries.getCountries(language, filter)}
+                data={CountriesApi.getCountries(language, filter)}
                 renderItem={({ item }) =>
                     <PhoneItem
                         key={item.key}
                         country={item}
-                        flag={flagResource.getFlag(item.key)}
+                        flag={FlagsApi.getFlag(item.key)}
                         testID={item.key + testID}
                         onPress={onPress}
                         itemContainerStyle={itemContainerStyle}

@@ -1,27 +1,28 @@
 {
-  "_from": "react-native-phonecode-picker@1.1.2",
-  "_id": "react-native-phonecode-picker@1.1.2",
+  "_from": "react-native-phonecode-picker",
+  "_id": "react-native-phonecode-picker@2.0.0-alpha",
   "_inBundle": false,
-  "_integrity": "sha512-SQP50Admhn9ktG157J3mkzfgR6Ci84ChOzE8Z5tYoxSBgnWxUwdAAqhdcvVl+Rudds0K5dIuKODb8DI1SMxD0g==",
+  "_integrity": "sha512-70rXURk/ryX7hx9cYQ15tCo+n8HNF0NcIJpLct9f7tVvNIoVlNWqpAtzK/UMMa33vBLp/dwO/psXxJh+M9a2Ag==",
   "_location": "/react-native-phonecode-picker",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "tag",
     "registry": true,
-    "raw": "react-native-phonecode-picker@1.1.2",
+    "raw": "react-native-phonecode-picker",
     "name": "react-native-phonecode-picker",
     "escapedName": "react-native-phonecode-picker",
-    "rawSpec": "1.1.2",
+    "rawSpec": "",
     "saveSpec": null,
-    "fetchSpec": "1.1.2"
+    "fetchSpec": "latest"
   },
   "_requiredBy": [
+    "#USER",
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/react-native-phonecode-picker/-/react-native-phonecode-picker-1.1.2.tgz",
-  "_shasum": "862bf79a62179097d741033fabd2570054a27922",
-  "_spec": "react-native-phonecode-picker@1.1.2",
-  "_where": "/Users/dmitriy/Desktop/mobappflowersua",
+  "_shasum": "9ab7031426810140a327cdca43a9a1f4aa9da24b",
+  "_spec": "react-native-phonecode-picker",
+  "_where": "/Users/dmitriy/Desktop/wizardsdev/rn_training",
   "author": {
     "name": "Dmitriy Chernenko",
     "email": "nmaudnepr@gmail.com"
@@ -54,5 +55,5 @@
   },
   "source": "index.ts",
   "types": "index.d.ts",
-  "version": "1.1.2"
+  "version": "2.0.0-alpha"
 }
