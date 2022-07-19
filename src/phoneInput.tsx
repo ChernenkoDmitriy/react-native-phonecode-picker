@@ -31,7 +31,7 @@ export const PhoneInput: FC<Props> = (props) => {
         onPress
     } = props;
 
-    const placeholder = country.mask?.replace(/[\[\]]/g, '') || '';
+    const placeholder = country?.mask?.replace(/[\[\]]/g, '') || '';
 
     const flagImage = useMemo(() => {
         return FlagsApi.getFlag(country?.key);
@@ -45,7 +45,7 @@ export const PhoneInput: FC<Props> = (props) => {
                 <Text style={[styles.text, style?.textCode]}>+{country?.phcode}</Text>
             </TouchableOpacity>
             <TextInputMask
-                mask={country.mask}
+                mask={country?.mask}
                 keyboardType={'phone-pad'}
                 style={[styles.textImput, style?.textInput]}
                 value={value}
