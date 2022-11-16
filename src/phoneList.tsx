@@ -19,12 +19,12 @@ interface Props {
 };
 
 export const PhoneList: FC<Props> = memo(({ filtered = '', placeholder = '', isSearch = false, language = 'en', onPress, containerStyle = {}, itemContainerStyle = {}, textStyle = {}, testID = 'PhoneList' }) => {
-    const [serchString, setSerchString] = useState<string>('');
-    const filter = isSearch ? serchString : filtered;
+    const [searchString, setSearchString] = useState<string>('');
+    const filter = isSearch ? searchString : filtered;
 
     return (
         <View style={[styles.container, containerStyle]} >
-            {isSearch ? <PhoneSearch onChangeText={setSerchString} serchString={serchString} placeholder={placeholder} /> : null}
+            {isSearch ? <PhoneSearch onChangeText={setSearchString} serchString={searchString} placeholder={placeholder} /> : null}
             <FlatList
                 keyboardDismissMode='interactive'
                 keyboardShouldPersistTaps={'handled'}

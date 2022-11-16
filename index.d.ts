@@ -1,5 +1,3 @@
-import { ICountries } from 'react-native-phonecode-picker/src/resources/countries';
-import { IFlags } from 'react-native-phonecode-picker/src/resources/flags';
 import React, { FC } from 'react';
 
 declare module 'react-native-phonecode-picker' {
@@ -46,8 +44,23 @@ declare module 'react-native-phonecode-picker' {
             phoneCodeContainer?: ViewStyle,
             placeholderTextColor?: ColorValue,
         };
-        inputProps: TextInputMaskProps;
+        inputProps?: TextInputMaskProps;
         showFlag?: boolean;
+    }
+
+    type Country = { countryName: string, phcode: string, key: string; mask?: string; };
+
+    type Language = 'ru' | 'es' | 'en' | 'ua' | 'ar' | 'de' | 'el' | 'fr' | 'it' | 'pl' | 'tr';
+
+    interface ICountries {
+        getCountries: (lang: Language, search?: string) => Array<Country>;
+        getCountryByIso: (lang: Language, key: string) => Array<Country>;
+        getCountryByPhoneCode: (lang: Language, key: string) => Country | undefined;
+    }
+
+    interface IFlags {
+        getFlag: (key: string) => any;
+        getAllFlags: () => object;
     }
 
     export const PhoneInput: FC<IPhoneInput> = (props: IPhoneInput) => { };

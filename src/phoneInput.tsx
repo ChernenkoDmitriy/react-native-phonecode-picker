@@ -16,7 +16,7 @@ interface Props {
         phoneCodeContainer?: ViewStyle,
         placeholderTextColor?: ColorValue,
     };
-    inputProps: TextInputMaskProps;
+    inputProps?: TextInputMaskProps;
     showFlag?: boolean;
 };
 
