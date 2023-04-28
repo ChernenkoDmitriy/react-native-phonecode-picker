@@ -1,18 +1,20 @@
 import { ICountries } from 'react-native-phonecode-picker/src/resources/countries';
 import { IFlags } from 'react-native-phonecode-picker/src/resources/flags';
 import React, { FC } from 'react';
-import { Text, View, StyleSheet, Image, ViewStyle, TextStyle, ColorValue, ImageStyle, TouchableOpacity, TextInput } from 'react-native';
+import { Text, TextInputProps, View, StyleSheet, Image, ViewStyle, TextStyle, ColorValue, ImageStyle, TouchableOpacity, TextInput, FlatListProps } from 'react-native';
 
 declare module 'react-native-phonecode-picker' {
 
-    export class PhoneSearch extends React.Component<{
+    interface PhoneSearchProps extends TextInputProps {
         value: string;
         onChangeText: (text: string) => void;
         containerStyle?: ViewStyle;
         iconColor?: string;
-    }> { };
+    };
 
-    interface PhoneListProps extends FlatList {
+    export function PhoneSearch(props: PhoneSearchProps): JSX.Element;
+
+    interface PhoneListProps extends Omit<Omit<FlatListProps<Country>, 'data'>, 'renderItem'> {
         language: Language;
         onPress: (country: Country) => void;
         containerStyle?: object;
@@ -21,7 +23,7 @@ declare module 'react-native-phonecode-picker' {
         filter?: string;
     };
 
-    export class PhoneList extends React.Component<PhoneListProps> { }
+    export function PhoneList(props: PhoneListProps): JSX.Element;
 
     interface PhoneItemProps {
         country: Country;
@@ -31,14 +33,14 @@ declare module 'react-native-phonecode-picker' {
         textStyle?: object;
     };
 
-    export class PhoneItem extends React.Component<PhoneItemProps> { };
+    export function PhoneItem(props: PhoneItemProps): JSX.Element;
 
-    interface PhoneInputProps extends TextInput {
+    interface PhoneInputProps extends TextInputProps {
         country: Country;
         onPress: () => void;
         value: string;
-        onChangeText: (value: string | undefined) => void;
-        style?: {
+        onChangeText: (value: string) => void;
+        styleComponent?: {
             container?: ViewStyle,
             flag?: ImageStyle;
             textInput?: TextStyle,
@@ -49,7 +51,7 @@ declare module 'react-native-phonecode-picker' {
         showFlag?: boolean;
     };
 
-    export class PhoneInput extends React.Component<PhoneInputProps> { };
+    export function PhoneInput(props: PhoneInputProps): JSX.Element;
 
     export const FlagsApi: IFlags;
 

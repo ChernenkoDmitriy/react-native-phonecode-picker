@@ -1,9 +1,9 @@
 import React, { FC, memo } from 'react';
-import { View, TextInput, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
+import { View, TextInput, StyleSheet, TouchableOpacity, ViewStyle, TextInputProps } from 'react-native';
 import { CloseIcon } from './closeIcon';
 import { SearchIcon } from './searchIcon';
 
-interface Props extends TextInput {
+interface Props extends TextInputProps {
     value: string;
     onChangeText: (text: string) => void;
     containerStyle?: ViewStyle;
