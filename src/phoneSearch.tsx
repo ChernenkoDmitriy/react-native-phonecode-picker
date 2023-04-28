@@ -1,30 +1,31 @@
 import React, { FC, memo } from 'react';
-import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, TextInput, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
 import { CloseIcon } from './closeIcon';
 import { SearchIcon } from './searchIcon';
 
-interface Props {
-    searchString: string;
+interface Props extends TextInput {
+    value: string;
     onChangeText: (text: string) => void;
-    placeholder?: string;
+    containerStyle?: ViewStyle;
+    iconColor?: string;
 };
 
-export const PhoneSearch: FC<Props> = memo(({ searchString = '', onChangeText, placeholder }) => {
+export const PhoneSearch: FC<Props> = memo(({ containerStyle, iconColor, value = '', onChangeText, ...restProps }) => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, containerStyle]}>
             <View style={styles.svgContainer}>
-                <SearchIcon />
+                <SearchIcon color={iconColor} />
             </View>
             <TextInput
-                value={searchString}
+                value={value}
                 style={styles.textInput}
                 underlineColorAndroid='transparent'
                 onChangeText={onChangeText}
                 placeholderTextColor='#999'
-                placeholder={placeholder}
+                {...restProps}
             />
-            {searchString ? <TouchableOpacity style={styles.svgContainer} onPress={() => { onChangeText('') }}  >
-                <CloseIcon width={32} height={32} color={'#696969'} />
+            {value ? <TouchableOpacity style={styles.svgContainer} onPress={() => { onChangeText('') }}  >
+                <CloseIcon width={32} height={32} color={iconColor} />
             </TouchableOpacity> : null}
         </View>
     );
@@ -33,25 +34,28 @@ export const PhoneSearch: FC<Props> = memo(({ searchString = '', onChangeText, p
 export const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        height: 60,
-        width: '100%',
-        paddingHorizontal: 10,
+        height: 40,
+        marginHorizontal: 10,
+        borderWidth: 1,
+        borderColor: '#384868',
+        borderRadius: 4,
+        backgroundColor: '#e8e6e626',
+        alignItems: 'center',
     },
     svgContainer: {
-        width: 56,
+        width: 48,
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        borderBottomWidth: 1,
-        borderColor: '#000',
     },
     textInput: {
         flex: 1,
-        fontSize: 18,
         color: '#000',
         padding: 0,
-        paddingRight: 10,
-        borderBottomWidth: 1,
-        borderColor: '#000',
+        paddingVertical: 0,
+        marginLeft: 12,
+        width: '100%',
+        fontSize: 16,
+        height: '100%',
     },
 });

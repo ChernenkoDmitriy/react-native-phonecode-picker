@@ -1,41 +1,43 @@
+import { ICountries } from 'react-native-phonecode-picker/src/resources/countries';
+import { IFlags } from 'react-native-phonecode-picker/src/resources/flags';
 import React, { FC } from 'react';
+import { Text, View, StyleSheet, Image, ViewStyle, TextStyle, ColorValue, ImageStyle, TouchableOpacity, TextInput } from 'react-native';
 
 declare module 'react-native-phonecode-picker' {
 
     export class PhoneSearch extends React.Component<{
-        searchString: string;
+        value: string;
         onChangeText: (text: string) => void;
-        placeholder?: string;
+        containerStyle?: ViewStyle;
+        iconColor?: string;
     }> { };
 
-    interface PhoneListProps {
-        language: 'ru' | 'es' | 'en' | 'uk' | 'ar';
-        isSearch?: boolean;
-        onPress: (country: { countryName: string; phcode: string; key: string; mask: string; }) => void;
+    interface PhoneListProps extends FlatList {
+        language: Language;
+        onPress: (country: Country) => void;
         containerStyle?: object;
         itemContainerStyle?: object;
         textStyle?: object;
-        testID?: string;
-        placeholder?: string;
-        filtered?: string;
-    }
+        filter?: string;
+    };
 
     export class PhoneList extends React.Component<PhoneListProps> { }
 
-    export class PhoneItem extends React.Component<{
-        country: { countryName: string; phcode: string; key: string; };
+    interface PhoneItemProps {
+        country: Country;
         flag: any;
-        testID: string;
-        onPress: (country: { countryName: string; phcode: string; key: string; mask: string; }) => void;
+        onPress: (country: Country) => void;
         itemContainerStyle?: object;
         textStyle?: object;
-    }> { };
+    };
 
-    interface IPhoneInput {
-        country: { countryName: string; phcode: string; key: string; mask: string };
+    export class PhoneItem extends React.Component<PhoneItemProps> { };
+
+    interface PhoneInputProps extends TextInput {
+        country: Country;
         onPress: () => void;
         value: string;
-        onChangeText: (formatted: string, extracted: string | undefined) => void;
+        onChangeText: (value: string | undefined) => void;
         style?: {
             container?: ViewStyle,
             flag?: ImageStyle;
@@ -44,26 +46,10 @@ declare module 'react-native-phonecode-picker' {
             phoneCodeContainer?: ViewStyle,
             placeholderTextColor?: ColorValue,
         };
-        inputProps?: TextInputMaskProps;
         showFlag?: boolean;
-    }
+    };
 
-    type Country = { countryName: string, phcode: string, key: string; mask?: string; };
-
-    type Language = 'ru' | 'es' | 'en' | 'ua' | 'ar' | 'de' | 'el' | 'fr' | 'it' | 'pl' | 'tr';
-
-    interface ICountries {
-        getCountries: (lang: Language, search?: string) => Array<Country>;
-        getCountryByIso: (lang: Language, key: string) => Array<Country>;
-        getCountryByPhoneCode: (lang: Language, key: string) => Country | undefined;
-    }
-
-    interface IFlags {
-        getFlag: (key: string) => any;
-        getAllFlags: () => object;
-    }
-
-    export const PhoneInput: FC<IPhoneInput> = (props: IPhoneInput) => { };
+    export class PhoneInput extends React.Component<PhoneInputProps> { };
 
     export const FlagsApi: IFlags;
 

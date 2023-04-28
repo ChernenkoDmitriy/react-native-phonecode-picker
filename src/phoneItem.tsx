@@ -1,19 +1,23 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback, memo } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Image } from 'react-native';
 import { Country } from './api/countries/ICountries';
 
 interface Props {
 	country: Country;
 	flag: any;
-	testID: string;
-	onPress: (country: { countryName: string; phcode: string; key: string; mask: string; }) => void;
+	onPress: (country: Country) => void;
 	itemContainerStyle?: object;
 	textStyle?: object;
 };
 
-export const PhoneItem: FC<Props> = ({ country: { countryName, phcode, key, mask }, flag, testID, onPress, itemContainerStyle, textStyle }) => {
+export const PhoneItem: FC<Props> = memo(({ country, flag, onPress, itemContainerStyle, textStyle }) => {
+
+	const onPressCountry = useCallback(() => {
+		onPress(country);
+	}, []);
+
 	return (
-		<TouchableOpacity onPress={() => { onPress({ countryName, phcode, key, mask }) }} accessibilityLabel={testID} testID={testID}>
+		<TouchableOpacity onPress={onPressCountry} accessibilityLabel={country?.countryName + 'PhoneID'} testID={country?.countryName + 'PhoneID'}>
 			<View style={[styles.countryContainer, itemContainerStyle]}>
 				<View style={styles.flagAndName}>
 					<View style={styles.imagewrapper}>
@@ -21,13 +25,13 @@ export const PhoneItem: FC<Props> = ({ country: { countryName, phcode, key, mask
 							? <Image source={flag} resizeMode='stretch' style={styles.flag} />
 							: <Image source={require('./resources/png_flags/_unknown.png')} resizeMode="stretch" style={styles.flag} />}
 					</View>
-					<Text style={[styles.text, textStyle]} >+{phcode}</Text>
-					<Text style={[styles.text, textStyle, { flex: 1 }]} numberOfLines={1}>{countryName}</Text>
+					<Text style={[styles.text, textStyle]} >+{country?.phcode}</Text>
+					<Text style={[styles.text, textStyle, { flex: 1 }]} numberOfLines={1}>{country?.countryName}</Text>
 				</View>
 			</View>
 		</TouchableOpacity >
 	);
-};
+});
 
 const styles = StyleSheet.create({
 	countryContainer: {
@@ -65,3 +69,4 @@ const styles = StyleSheet.create({
 		height: 32,
 	}
 });
+

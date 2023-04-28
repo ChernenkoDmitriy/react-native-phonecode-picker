@@ -1,13 +1,13 @@
 import React, { FC, useMemo } from 'react';
-import { Text, View, StyleSheet, Image, ViewStyle, TextStyle, ColorValue, ImageStyle, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Image, ViewStyle, TextStyle, ColorValue, ImageStyle, TouchableOpacity, TextInput } from 'react-native';
 import { FlagsApi } from './api/flags/Flags';
-import TextInputMask, { TextInputMaskProps } from 'react-native-text-input-mask';
+import { Country } from './api/countries/ICountries';
 
-interface Props {
-    country: { countryName: string; phcode: string; key: string; mask: string };
+interface Props extends TextInput {
+    country: Country;
     onPress: () => void;
     value: string;
-    onChangeText: (formatted: string, extracted: string | undefined) => void;
+    onChangeText: (value: string | undefined) => void;
     style?: {
         container?: ViewStyle,
         flag?: ImageStyle;
@@ -16,22 +16,11 @@ interface Props {
         phoneCodeContainer?: ViewStyle,
         placeholderTextColor?: ColorValue,
     };
-    inputProps?: TextInputMaskProps;
     showFlag?: boolean;
 };
 
-export const PhoneInput: FC<Props> = (props) => {
-    const {
-        country,
-        value,
-        onChangeText,
-        style,
-        inputProps = {},
-        showFlag = true,
-        onPress
-    } = props;
+export const PhoneInput: FC<Props> = ({ country, value, onChangeText, style, showFlag = true, onPress, ...restProps }) => {
 
-    const placeholder = country?.mask?.replace(/[\[\]]/g, '') || '';
 
     const flagImage = useMemo(() => {
         return FlagsApi.getFlag(country?.key);
@@ -44,16 +33,12 @@ export const PhoneInput: FC<Props> = (props) => {
                 {!!showFlag && <Image source={require('./resources/Vector.png')} resizeMode="stretch" style={styles.arrow} />}
                 <Text style={[styles.text, style?.textCode]}>+{country?.phcode}</Text>
             </TouchableOpacity>
-            <TextInputMask
-                mask={country?.mask}
-                keyboardType={'phone-pad'}
+            <TextInput
                 style={[styles.textImput, style?.textInput]}
+                keyboardType={'phone-pad'}
                 value={value}
-                placeholderTextColor={style?.placeholderTextColor || '#DCE1E2'}
                 onChangeText={onChangeText}
-                placeholder={placeholder}
-                numberOfLines={1}
-                {...{ inputProps }}
+                {...restProps}
             />
         </View>
     );

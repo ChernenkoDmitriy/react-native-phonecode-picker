@@ -1,6 +1,6 @@
 {
-  "_from": "react-native-phonecode-picker@2.0.3",
-  "_id": "react-native-phonecode-picker@2.0.3",
+  "_from": "react-native-phonecode-picker@2.1.0",
+  "_id": "react-native-phonecode-picker@2.1.0",
   "_inBundle": false,
   "_integrity": "sha512-2jwuAOzQQatTu2KMtqYbDrYawXujin+JlFCNwFfdnimXwMW/uqyK1Lp7ice5RIRiWbNWfuy7nohIlFmrQtezLw==",
   "_location": "/react-native-phonecode-picker",
@@ -8,19 +8,19 @@
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "react-native-phonecode-picker@2.0.3",
+    "raw": "react-native-phonecode-picker@2.1.0",
     "name": "react-native-phonecode-picker",
     "escapedName": "react-native-phonecode-picker",
-    "rawSpec": "2.0.3",
+    "rawSpec": "2.1.0",
     "saveSpec": null,
-    "fetchSpec": "2.0.3"
+    "fetchSpec": "2.1.0"
   },
   "_requiredBy": [
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/react-native-phonecode-picker/-/react-native-phonecode-picker-2.0.0-alpha.tgz",
   "_shasum": "021333907ebcbb057465f979028431558f605b00",
-  "_spec": "react-native-phonecode-picker@2.0.3",
+  "_spec": "react-native-phonecode-picker@2.1.0",
   "_where": "/Users/dmitriy/Desktop/wizardsdev/rn_training",
   "author": {
     "name": "Dmitriy Chernenko",
@@ -54,5 +54,5 @@
   },
   "source": "index.ts",
   "types": "index.d.ts",
-  "version": "2.0.3"
+  "version": "2.1.0"
 }
